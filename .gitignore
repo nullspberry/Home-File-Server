@@ -48,3 +48,7 @@ $RECYCLE.BIN/
 *.swp
 *.swo
 
+# Docs / guides not meant for the repo
+*.md
+!README.md
+
