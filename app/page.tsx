@@ -217,23 +217,30 @@ export default function Home() {
           </nav>
         )}
 
-        {/* Search Bar */}
-        {items.length > 5 && (
-          <div className="filter-bar relative">
-            <input
-              type="text"
-              className="filter-input pl-9"
-              placeholder="Filter items in this folder..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-          </div>
-        )}
-
         {/* Content Explorer */}
-        <section className="card">
-          {loading && <div className="loading-state">Loading directory contents...</div>}
+        <section className="card explorer-card">
+          {/* Search Bar - integrated inside card header to avoid layout jumps */}
+          {items.length > 3 && (
+            <div className="filter-bar relative mb-4">
+              <input
+                type="text"
+                className="filter-input pl-9"
+                placeholder="Filter items in this folder..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+            </div>
+          )}
+
+          {loading && (
+            <div className="loading-overlay">
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-6 h-6 border-2 border-sky-400 border-t-transparent rounded-full animate-spin" />
+                <span className="text-sm text-slate-400">Loading contents...</span>
+              </div>
+            </div>
+          )}
 
           {error && <div className="error-state">{error}</div>}
 

@@ -20,12 +20,17 @@
   padding: 0;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.5;
   min-height: 100vh;
+  overflow-y: scroll; /* Fallback to guarantee scrollbar never jumps */
 }
 
 .container {
@@ -197,9 +202,10 @@ body {
   border-radius: 9999px;
   color: var(--text-primary);
   font-size: 0.85rem;
+  font-weight: 600; /* Consistent font-weight prevents width shift */
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.15s;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
 .lib-pill:hover {
@@ -210,9 +216,22 @@ body {
 .lib-pill.active {
   background-color: var(--accent);
   color: #090d16;
-  font-weight: 600;
   border-color: var(--accent);
   box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.explorer-card {
+  min-height: 420px;
+  position: relative;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  color: var(--text-muted);
 }
 
 /* Breadcrumbs */
